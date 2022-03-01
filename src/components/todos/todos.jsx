@@ -33,25 +33,15 @@ const Todos = () => {
     });
   }
 
-  function changeCompleted(todo) {
-    // console.log(todo);
+  function changeCompleted(completed, id) {
     setTodos((state) => {
-      state[todo.id] = todo;
+      const findTodoIndex = state.findIndex((todo) => todo.id === id);
+      state[findTodoIndex].completed = !completed;
       return [...state];
     });
-    // console.log(completed, id);
-    // console.log(todos[id]);
-    // setTodos((state) => {
-    //   state[id].completed = !completed;
-    //   return [...state];
-    //   // const newTodos = state;
-    //   // newTodos[id].completed = !completed;
-    //   // return [...newTodos];
-    // }
-    // );
 
-    // if (!completed) {
-    // }
+    if (!completed) {
+    }
 
     setTodos((state) => state);
   }
@@ -114,7 +104,7 @@ const Todos = () => {
             <div className="todo__item-checkbox-wrapper">
               <input
                 checked={todo.completed}
-                onChange={() => changeCompleted(todo)}
+                onChange={() => changeCompleted(todo.completed, todo.id)}
                 className="todo__item-checkbox"
                 type="checkbox"
               />
